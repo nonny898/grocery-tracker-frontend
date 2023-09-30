@@ -1,45 +1,29 @@
-import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RootTabParamList } from 'routes/types/Root';
 
-export type Props = {
-  name: string;
-  baseEnthusiasmLevel?: number;
-};
+import Home from 'screens/HomeScreen';
+import SettingsScreen from 'screens/SettingsScreen';
+import ShoppingScreen from 'screens/ShoppingScreen';
+import ToolsScreen from 'screens/ToolsScreen';
 
-const Hello: React.FC<Props> = ({ name, baseEnthusiasmLevel = 0 }) => {
-  const [enthusiasmLevel, setEnthusiasmLevel] = React.useState(baseEnthusiasmLevel);
+import { theme } from 'styles/layout';
+import { navigatorOptions } from 'utils/tab';
 
-  const onIncrement = () => setEnthusiasmLevel(enthusiasmLevel + 1);
-  const onDecrement = () => setEnthusiasmLevel(enthusiasmLevel > 0 ? enthusiasmLevel - 1 : 0);
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
-  const getExclamationMarks = (numChars: number) =>
-    numChars > 0 ? Array(numChars + 1).join('!') : '';
-
+export default () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Hello World!</Text>
-    </View>
+    <SafeAreaProvider>
+      <NavigationContainer theme={theme}>
+        <Tab.Navigator screenOptions={navigatorOptions}>
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Shopping" component={ShoppingScreen} />
+          <Tab.Screen name="Tools" component={ToolsScreen} />
+          <Tab.Screen name="Settings" component={SettingsScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  greeting: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    margin: 16,
-  },
-  text: {
-    color: 'rgba(96,100,109, 1)',
-    fontSize: 42,
-    fontWeight: '100',
-    textAlign: 'center',
-  },
-});
-
-export default Hello;
