@@ -1,13 +1,13 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 export type RootTabParamList = {
-  Home: undefined;
-  Shopping: undefined;
-  Tools: undefined;
-  Settings: undefined;
+  HomeScreen: undefined;
+  ShoppingScreen: undefined;
+  ToolsScreen: undefined;
+  SettingsScreen: undefined;
 };
 
-export type HomeProp = BottomTabScreenProps<RootTabParamList, 'Home'>;
-export type ShoppingProp = BottomTabScreenProps<RootTabParamList, 'Shopping'>;
-export type ToolsProp = BottomTabScreenProps<RootTabParamList, 'Tools'>;
-export type SettingsProp = BottomTabScreenProps<RootTabParamList, 'Settings'>;
+export type HomeScreenProp = BottomTabScreenProps<RootTabParamList, 'HomeScreen'>;
+export type ShoppingScreenProp = BottomTabScreenProps<RootTabParamList, 'ShoppingScreen'>;
+export type ToolsScreenProp = BottomTabScreenProps<RootTabParamList, 'ToolsScreen'>;
+export type SettingsScreenProp = BottomTabScreenProps<RootTabParamList, 'SettingsScreen'>;

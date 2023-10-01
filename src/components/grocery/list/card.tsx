@@ -1,3 +1,4 @@
+import GeneralCard from 'components/general/card';
 import { Text, View, StyleSheet } from 'react-native';
 import { colors } from 'styles/layout';
 import { ShoppingListInterface } from 'types/interface/shopping-list';
@@ -5,41 +6,26 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default ({ item }: { item: ShoppingListInterface }) => {
   return (
-    <View style={styles.card}>
-      <View style={styles.productInfo}>
-        <View style={styles.productImage}>
-          <Ionicons name={'fast-food-outline'} color={colors.primary} size={24} />
-        </View>
-        <View style={styles.productDetail}>
-          <Text style={styles.name}>{item.item_name}</Text>
-          <Text style={styles.brand}>{item.brand}</Text>
-        </View>
-      </View>
-      <View>
-        <Text style={styles.quantity}>x{item.quantity}</Text>
-      </View>
-    </View>
+    <GeneralCard
+      children={[
+        <View style={styles.productInfo} key={'product-info'}>
+          <View style={styles.productImage}>
+            <Ionicons name={'fast-food-outline'} color={colors.primary} size={24} />
+          </View>
+          <View style={styles.productDetail}>
+            <Text style={styles.name}>{item.item_name}</Text>
+            <Text style={styles.brand}>{item.brand}</Text>
+          </View>
+        </View>,
+        <View key={'product-quantity'}>
+          <Text style={styles.quantity}>x{item.quantity}</Text>
+        </View>,
+      ]}
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    borderRadius: 8,
-    padding: 16,
-    marginHorizontal: 16,
-    marginBottom: 16,
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    alignItems: 'center',
-    shadowColor: 'hsl(209, 23%, 60%)',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5, // This is for Android
-  },
   productInfo: {
     flex: 1,
     flexDirection: 'row',

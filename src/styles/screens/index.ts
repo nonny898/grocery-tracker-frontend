@@ -5,15 +5,14 @@ export const styles = StyleSheet.create({
     backgroundColor: 'hsl(210, 36%, 96%)',
   },
   sectionHeader: {
-    backgroundColor: 'white',
     padding: 8,
-    borderRadius: 8,
     alignSelf: 'flex-start',
-    margin: 16,
+    margin: 8,
     display: 'flex',
   },
   title: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: '500',
+    color: 'hsl(211, 39%, 23%)',
   },
 });
