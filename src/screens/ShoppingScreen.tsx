@@ -5,7 +5,7 @@ import { ListStackParamList } from 'routes/types/List';
 import { styles } from 'styles/screens';
 import ListStackOptions from 'utils/stack/List';
 import MOCK from 'mock/shopping-data.json';
-import GroceryListCard from 'components/grocery/list/Card';
+import GroceryListCard from 'components/grocery/list/card';
 
 const Stack = createStackNavigator<ListStackParamList>();
 

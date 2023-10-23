@@ -9,7 +9,7 @@ import ListScreen from 'screens/ShoppingScreen';
 import ToolsScreen from 'screens/ToolsScreen';
 
 import { theme } from 'styles/layout';
-import { navigatorOptions } from 'utils/Tab';
+import { navigatorOptions } from './src/utils/tab';
 
 import i18n from './src/localization/i18n';
 import { useFonts } from 'expo-font';
@@ -50,10 +50,10 @@ export default () => {
     <SafeAreaProvider>
       <NavigationContainer theme={theme}>
         <Tab.Navigator screenOptions={navigatorOptions}>
+          <Tab.Screen name="SettingsScreen" component={SettingsScreen} />
           <Tab.Screen name="HomeScreen" component={HomeScreen} />
           <Tab.Screen name="ListScreen" component={ListScreen} />
           <Tab.Screen name="ToolsScreen" component={ToolsScreen} />
-          <Tab.Screen name="SettingsScreen" component={SettingsScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
