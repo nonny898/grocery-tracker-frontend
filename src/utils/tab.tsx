@@ -1,7 +1,12 @@
 import { BottomTabNavigationOptions, BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
 import { RootTabParamList } from 'routes/types/Root';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+import IconNavigationHome from '../assets/icons/navigation/home';
+import IconNavigationList from '../assets/icons/navigation/list';
+import IconNavigationTools from '../assets/icons/navigation/tools';
+import IconNavigationSettings from '../assets/icons/navigation/settings';
 
 type TabBarLabelProps = {
   focused: boolean;
@@ -14,34 +19,30 @@ type TabBarIconProps = {
   size: number;
 };
 
-const computeIconName = (
-  routeName: string,
-  focused: boolean
-): typeof Ionicons.defaultProps.name => {
+const computeIconName = (routeName: string, color: string) => {
   switch (routeName) {
     case 'HomeScreen':
-      return focused ? 'home' : 'home-outline';
-    case 'ShoppingScreen':
-      return focused ? 'basket' : 'basket-outline';
+      return <IconNavigationHome color={color} />;
+    case 'ListScreen':
+      return <IconNavigationList color={color} />;
     case 'ToolsScreen':
-      return focused ? 'calculator' : 'calculator-outline';
-    case 'SettingsScreen':
-      return focused ? 'cog' : 'cog-outline';
+      return <IconNavigationTools color={color} />;
     default:
-      return 'home';
+      return <IconNavigationSettings color={color} />;
   }
 };
 
 const computeLabelName = (routeName: string): string => {
+  const { t } = useTranslation();
   switch (routeName) {
     case 'HomeScreen':
-      return 'Home';
-    case 'ShoppingScreen':
-      return 'Shopping';
+      return t('tab.home');
+    case 'ListScreen':
+      return t('tab.list');
     case 'ToolsScreen':
-      return 'Tools';
+      return t('tab.tools');
     case 'SettingsScreen':
-      return 'Settings';
+      return t('tab.settings');
     default:
       return 'Home';
   }
@@ -51,25 +52,26 @@ export const navigatorOptions = ({
   route,
 }: BottomTabScreenProps<RootTabParamList>): BottomTabNavigationOptions => ({
   headerShown: false,
-  tabBarLabel: ({ focused, color }: TabBarLabelProps) => {
+  tabBarLabel: ({ color }: TabBarLabelProps) => {
     let label = computeLabelName(route.name);
-    return <Text style={{ color }}>{label}</Text>;
+    return <Text style={{ color, ...styles.tabBarLabel }}>{label}</Text>;
   },
-  tabBarIcon: ({ focused, color, size }: TabBarIconProps) => {
-    let iconName = computeIconName(route.name, focused);
-    return <Ionicons name={iconName} color={color} size={size * 0.8} />;
+  tabBarIcon: ({ color }: TabBarIconProps) => {
+    const icon = computeIconName(route.name, color);
+    return icon;
   },
-  tabBarInactiveTintColor: 'hsl(210, 31%, 80%)',
+  tabBarInactiveTintColor: 'hsla(210, 22%, 49%, 1)',
   tabBarStyle: {
-    borderTopWidth: 1,
-    borderTopColor: 'hsl(210, 31%, 95%)',
+    borderTopWidth: 0,
     backgroundColor: 'white',
+    elevation: 0,
   },
-  tabBarLabelStyle: {
+  tabBarHideOnKeyboard: true,
+});
+
+const styles = StyleSheet.create({
+  tabBarLabel: {
     fontSize: 12,
-  },
-  tabBarItemStyle: {
-    paddingTop: 4,
-    paddingBottom: 4,
+    fontFamily: 'Prompt-Medium',
   },
 });

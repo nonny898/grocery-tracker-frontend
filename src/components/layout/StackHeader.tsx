@@ -1,25 +1,17 @@
-import { getHeaderTitle } from '@react-navigation/elements';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from 'styles/layout';
-import { StackHeaderProps } from '@react-navigation/stack';
+import { useTranslation } from 'react-i18next';
 
-const computeScreenName = (routeName: string) => {
-  switch (routeName) {
-    case 'Home':
-      return 'Home';
-    case 'AddGrocery':
-      return 'Add Grocery';
-    default:
-      return 'Home';
-  }
+const computeScreenName = () => {
+  const { t } = useTranslation();
+  return t('appName');
 };
 
-export default ({ navigation, route, options }: StackHeaderProps) => {
+export default () => {
   const { top } = useSafeAreaInsets();
-  const title = getHeaderTitle(options, route.name);
   return (
     <View
       style={{
@@ -27,19 +19,11 @@ export default ({ navigation, route, options }: StackHeaderProps) => {
         paddingTop: top,
       }}
     >
-      {title === 'AddGrocery' ? (
-        <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.navigate('Home')}>
-          <Ionicons name={'chevron-back'} color={colors.primary} size={24} />
-        </TouchableOpacity>
-      ) : null}
-      <Text style={styles.title}>{computeScreenName(title)}</Text>
-      {title === 'Home' ? (
-        <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.navigate('AddGrocery')}>
-          <Ionicons name={'add'} color={colors.primary} size={24} />
-        </TouchableOpacity>
-      ) : (
-        <View />
-      )}
+      <Text style={styles.title}>{computeScreenName()}</Text>
+      <View style={groupStyles.container}>
+        <Text style={groupStyles.name}>กลุ่มแรก</Text>
+        <Ionicons name={'chevron-down'} color="hsla(225, 57%, 67%, 1)" size={12} />
+      </View>
     </View>
   );
 };
@@ -48,22 +32,30 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: 'white',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
-    shadowColor: 'hsl(209, 23%, 60%)',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5, // This is for Android
+    borderBottomWidth: 1,
+    borderBottomColor: 'hsla(212, 33%, 89%, 1)',
   },
   title: {
+    fontFamily: 'Prompt-SemiBold',
     fontSize: 24,
-    fontWeight: 'bold',
     paddingBottom: 8,
     color: colors.primary,
+  },
+});
+
+const groupStyles = StyleSheet.create({
+  container: {
+    marginLeft: 16,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  name: {
+    fontFamily: 'Prompt-Medium',
+    color: 'hsla(225, 57%, 67%, 1)',
+    fontSize: 12,
+    paddingRight: 4,
   },
 });
