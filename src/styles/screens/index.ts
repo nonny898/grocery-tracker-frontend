@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   screen: {
-    paddingHorizontal: 16,
+    display: 'flex',
+    flexGrow: 1,
   },
   sectionHeader: {
     marginTop: 26,

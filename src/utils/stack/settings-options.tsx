@@ -1,4 +1,4 @@
-import StackHeader from 'components/layout/StackHeader';
+import StackHeader from 'utils/stack/settings-header';
 import { StackNavigationOptions, StackScreenProps } from '@react-navigation/stack';
 import { SettingsStackParamList } from 'routes/types/Settings';
 

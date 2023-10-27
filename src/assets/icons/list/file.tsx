@@ -3,7 +3,7 @@ import { G, Path, Svg } from 'react-native-svg';
 
 export default () => {
   return (
-    <View>
+    <View style={{ paddingRight: 4 }}>
       <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <G id="file-02">
           <Path

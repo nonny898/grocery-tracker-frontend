@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { styles } from 'styles/screens';
 
-import SettingsStackOptions from 'utils/stack/Settings';
+import SettingsStackOptions from 'utils/stack/settings-options';
 import { SettingsStackParamList } from 'routes/types/Settings';
 
 const Stack = createStackNavigator<SettingsStackParamList>();

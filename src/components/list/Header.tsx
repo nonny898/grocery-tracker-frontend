@@ -8,9 +8,11 @@ export default ({ title, amount }: { title: string; amount: number }) => {
     <View style={styles.container}>
       <IconListFile />
       <Text style={styles.title}>{title}</Text>
-      <View style={styles.amountContainer}>
-        <Text style={styles.amount}>{amount}</Text>
-      </View>
+      {amount ? (
+        <View style={styles.amountContainer}>
+          <Text style={styles.amount}>{amount}</Text>
+        </View>
+      ) : null}
     </View>
   );
 };

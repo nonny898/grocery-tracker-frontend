@@ -8,11 +8,16 @@ import SettingsScreen from 'screens/SettingsScreen';
 import ListScreen from 'screens/ShoppingScreen';
 import ToolsScreen from 'screens/ToolsScreen';
 
+import LoginScreen from 'screens/LoginScreen';
+
 import { theme } from 'styles/layout';
 import { navigatorOptions } from './src/utils/tab';
 
 import i18n from './src/localization/i18n';
 import { useFonts } from 'expo-font';
+
+import { appId, baseUrl } from './atlasConfig.json';
+import { AppProvider, UserProvider } from '@realm/react';
 
 const initI18n = i18n;
 
@@ -39,6 +44,21 @@ const fonts = {
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
+export const App = () => {
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer theme={theme}>
+        <Tab.Navigator screenOptions={navigatorOptions}>
+          <Tab.Screen name="HomeScreen" component={HomeScreen} />
+          <Tab.Screen name="ListScreen" component={ListScreen} />
+          <Tab.Screen name="ToolsScreen" component={ToolsScreen} />
+          <Tab.Screen name="SettingsScreen" component={SettingsScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+};
+
 export default () => {
   const [fontsLoaded] = useFonts(fonts);
 
@@ -47,15 +67,10 @@ export default () => {
   }
 
   return (
-    <SafeAreaProvider>
-      <NavigationContainer theme={theme}>
-        <Tab.Navigator screenOptions={navigatorOptions}>
-          <Tab.Screen name="SettingsScreen" component={SettingsScreen} />
-          <Tab.Screen name="HomeScreen" component={HomeScreen} />
-          <Tab.Screen name="ListScreen" component={ListScreen} />
-          <Tab.Screen name="ToolsScreen" component={ToolsScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <AppProvider id={appId} baseUrl={baseUrl}>
+      <UserProvider fallback={LoginScreen}>
+        <App />
+      </UserProvider>
+    </AppProvider>
   );
 };
