@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "grocery-tracker-frontend",
-    "slug": "grocery-tracker-frontend",
+    "name": "code-name-penguin",
+    "slug": "code-name-penguin",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,11 +11,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.keatif.penguin"
     },
     "android": {
       "adaptiveIcon": {
@@ -26,6 +25,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": []
   }
 }

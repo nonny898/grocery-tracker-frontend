@@ -7,8 +7,12 @@ const emptyStyles = {
   emptyContainer: {
     paddingHorizontal: 12,
     paddingVertical: 20,
-    borderWidth: 2,
+    borderWidth: platform === 'android' ? 2 : 0,
     borderColor: platform === 'android' ? themes.colors.secondary.$10 : undefined,
+    shadowColor: themes.colors.secondary.$10,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 4,
   },
   emptyTitle: {
     fontFamily: 'Prompt-Medium',

@@ -16,7 +16,7 @@ import { navigatorOptions } from './src/utils/tab';
 import i18n from './src/localization/i18n';
 import { useFonts } from 'expo-font';
 
-import { appId, baseUrl } from './atlasConfig.json';
+import { appId, baseUrl } from './config.json';
 import { AppProvider, UserProvider } from '@realm/react';
 
 const initI18n = i18n;
