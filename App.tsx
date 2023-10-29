@@ -18,44 +18,46 @@ import { useFonts } from 'expo-font';
 
 import { appId, baseUrl } from './config.json';
 import { AppProvider, UserProvider } from '@realm/react';
+import { View, ActivityIndicator } from 'react-native';
+
+import { realmContext } from './RealmContext';
+import { fonts } from './fonts';
+const { RealmProvider } = realmContext;
 
 const initI18n = i18n;
 
-const fonts = {
-  'Prompt-Black': require('./src/assets/fonts/Prompt-Black.ttf'),
-  'Prompt-BlackItalic': require('./src/assets/fonts/Prompt-BlackItalic.ttf'),
-  'Prompt-Bold': require('./src/assets/fonts/Prompt-Bold.ttf'),
-  'Prompt-BoldItalic': require('./src/assets/fonts/Prompt-BoldItalic.ttf'),
-  'Prompt-ExtraBold': require('./src/assets/fonts/Prompt-ExtraBold.ttf'),
-  'Prompt-ExtraBoldItalic': require('./src/assets/fonts/Prompt-ExtraBoldItalic.ttf'),
-  'Prompt-ExtraLight': require('./src/assets/fonts/Prompt-ExtraLight.ttf'),
-  'Prompt-ExtraLightItalic': require('./src/assets/fonts/Prompt-ExtraLightItalic.ttf'),
-  'Prompt-Italic': require('./src/assets/fonts/Prompt-Italic.ttf'),
-  'Prompt-Light': require('./src/assets/fonts/Prompt-Light.ttf'),
-  'Prompt-LightItalic': require('./src/assets/fonts/Prompt-LightItalic.ttf'),
-  'Prompt-Medium': require('./src/assets/fonts/Prompt-Medium.ttf'),
-  'Prompt-MediumItalic': require('./src/assets/fonts/Prompt-MediumItalic.ttf'),
-  'Prompt-Regular': require('./src/assets/fonts/Prompt-Regular.ttf'),
-  'Prompt-SemiBold': require('./src/assets/fonts/Prompt-SemiBold.ttf'),
-  'Prompt-SemiBoldItalic': require('./src/assets/fonts/Prompt-SemiBoldItalic.ttf'),
-  'Prompt-Thin': require('./src/assets/fonts/Prompt-Thin.ttf'),
-  'Prompt-ThinItalic': require('./src/assets/fonts/Prompt-ThinItalic.ttf'),
-};
-
 const Tab = createBottomTabNavigator<RootTabParamList>();
+
+const LoadingIndicator = () => {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ActivityIndicator color={theme.colors.primary} size="large" />
+    </View>
+  );
+};
 
 export const App = () => {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer theme={theme}>
-        <Tab.Navigator screenOptions={navigatorOptions}>
-          <Tab.Screen name="HomeScreen" component={HomeScreen} />
-          <Tab.Screen name="ListScreen" component={ListScreen} />
-          <Tab.Screen name="ToolsScreen" component={ToolsScreen} />
-          <Tab.Screen name="SettingsScreen" component={SettingsScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <RealmProvider
+      sync={{
+        flexible: true,
+        onError: (_, error) => {
+          console.error(error);
+        },
+      }}
+      fallback={LoadingIndicator}
+    >
+      <SafeAreaProvider>
+        <NavigationContainer theme={theme}>
+          <Tab.Navigator screenOptions={navigatorOptions}>
+            <Tab.Screen name="HomeScreen" component={HomeScreen} />
+            <Tab.Screen name="ListScreen" component={ListScreen} />
+            <Tab.Screen name="ToolsScreen" component={ToolsScreen} />
+            <Tab.Screen name="SettingsScreen" component={SettingsScreen} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </RealmProvider>
   );
 };
 

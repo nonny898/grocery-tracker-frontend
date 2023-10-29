@@ -1,11 +1,11 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { styles } from 'styles/screens';
+import { screenStyles } from 'styles/screens';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from 'styles/layout';
 
 export default () => {
   return (
-    <View style={styles.screen}>
+    <View style={screenStyles.screen}>
       <View style={formStyles.form}>
         <View style={formStyles.formField}>
           <Text style={formStyles.formFieldLabel}>Name</Text>

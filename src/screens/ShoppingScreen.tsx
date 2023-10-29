@@ -2,7 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { ListStackParamList } from 'routes/types/List';
-import { styles } from 'styles/screens';
+import { screenStyles } from 'styles/screens';
 import ListStackOptions from 'utils/stack/List';
 import MOCK from 'mock/shopping-data.json';
 import GroceryListCard from 'components/grocery/list/card';
@@ -43,25 +43,25 @@ const ListsScreen = () => {
   const [inCart] = useState(handleFilterInCart(true));
 
   return (
-    <View style={styles.screen}>
+    <View style={screenStyles.screen}>
       <ScrollView>
         <View style={{ paddingTop: 16 }}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {lists.map((list) => (
-              <View key={list.name} style={styles.list}>
-                <Text style={styles.listText}>{list.name}</Text>
+              <View key={list.name} style={screenStyles.list}>
+                <Text style={screenStyles.listText}>{list.name}</Text>
               </View>
             ))}
           </ScrollView>
         </View>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.title}>To Buy Items</Text>
+        <View style={screenStyles.sectionHeader}>
+          <Text style={screenStyles.title}>To Buy Items</Text>
         </View>
         {inList.map((item) => (
           <GroceryListCard key={item.id} item={item} />
         ))}
-        <View style={styles.sectionHeader}>
-          <Text style={styles.title}>In Cart Items</Text>
+        <View style={screenStyles.sectionHeader}>
+          <Text style={screenStyles.title}>In Cart Items</Text>
         </View>
         {inCart.map((item) => (
           <GroceryListCard key={item.id} item={item} />

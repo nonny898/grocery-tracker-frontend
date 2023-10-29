@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity } from 'react-native';
 import { buttonStyle } from 'styles/components/button';
 
-const { buttonPrimaryContainer, buttonPrimaryTitle } = buttonStyle;
+const { buttonSecondaryContainer, buttonSecondaryTitle } = buttonStyle;
 
 type Props = {
   title: string;
@@ -10,8 +10,8 @@ type Props = {
 
 export default ({ title, onPress }: Props) => {
   return (
-    <TouchableOpacity style={buttonPrimaryContainer} activeOpacity={0.75} onPress={onPress}>
-      <Text style={buttonPrimaryTitle}>{title}</Text>
+    <TouchableOpacity style={buttonSecondaryContainer} activeOpacity={0.75} onPress={onPress}>
+      <Text style={buttonSecondaryTitle}>{title}</Text>
     </TouchableOpacity>
   );
 };

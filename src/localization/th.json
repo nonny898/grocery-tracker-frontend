@@ -1,20 +1,29 @@
 {
-  "translation": {
-    "appName": "เพนกวิน",
-    "tab": {
-      "home": "หน้าหลัก",
-      "list": "รายการ",
-      "tools": "เครื่องมือ",
-      "settings": "ตั้งค่า"
-    },
-    "list": {
-      "addNewList": "เพิ่มรายการ",
-      "activeList": "รายการที่ทำอยู่",
-      "noListTitle": "ไม่มีรายการที่ทำอยู่",
-      "noListDescription": "คลิกที่ปุ่มด้านล่างเพื่อเพิ่มรายการใหม่"
-    },
-    "settings": {
-      "title": "ตั้งค่า"
+  "appName": "เพนกวิน",
+  "tab": {
+    "home": "หน้าหลัก",
+    "list": "รายการ",
+    "tools": "เครื่องมือ",
+    "settings": "ตั้งค่า"
+  },
+  "list": {
+    "addNewList": "เพิ่มรายการ",
+    "activeList": "รายการที่ทำอยู่",
+    "noListTitle": "ไม่มีรายการที่ทำอยู่",
+    "noListDescription": "คลิกที่ปุ่มด้านล่างเพื่อเพิ่มรายการใหม่",
+    "form": {
+      "addTitle": "สร้างรายการใหม่",
+      "nameLabel": "ชื่อ",
+      "namePlaceholder": "ชื่อรายการ",
+      "descriptionLabel": "รายละเอียด",
+      "descriptionPlaceholder": "รายละเอียดรายการ",
+      "editTitle": "แก้ไขรายการ",
+      "addButton": "เพิ่ม",
+      "saveButton": "บันทึก",
+      "cancelButton": "ยกเลิก"
     }
+  },
+  "settings": {
+    "title": "ตั้งค่า"
   }
 }

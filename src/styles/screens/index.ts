@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
+import themes from 'styles/themes';
 
-export const styles = StyleSheet.create({
+export const screenStyles = StyleSheet.create({
   screen: {
     display: 'flex',
     flexGrow: 1,
@@ -11,9 +12,9 @@ export const styles = StyleSheet.create({
     display: 'flex',
   },
   title: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: 'hsl(211, 39%, 23%)',
+    fontSize: 24,
+    fontFamily: 'Prompt-Medium',
+    color: themes.colors.secondary.$03,
   },
   list: {
     display: 'flex',
