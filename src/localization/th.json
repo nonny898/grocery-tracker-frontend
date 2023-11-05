@@ -20,10 +20,19 @@
       "editTitle": "แก้ไขรายการ",
       "addButton": "เพิ่ม",
       "saveButton": "บันทึก",
-      "cancelButton": "ยกเลิก"
+      "cancelButton": "ยกเลิก",
+      "templateTitle": "เทมเพลต"
     }
   },
   "settings": {
     "title": "ตั้งค่า"
+  },
+  "template": {
+    "groceries": {
+      "title": "ซื้อของเข้าบ้าน",
+      "pendingName": "ต้องซื้อ",
+      "inProgressName": "ตะกร้า",
+      "completedName": "เช็คเอาท์"
+    }
   }
 }

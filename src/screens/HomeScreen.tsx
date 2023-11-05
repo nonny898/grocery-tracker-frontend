@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeProp, HomeStackParamList } from 'routes/types/Home';
 
@@ -27,7 +27,7 @@ const EmptyList = ({ navigation }: HomeProp) => {
   const { t } = useTranslation();
 
   const handleCreate = () => {
-    navigation.navigate('ListScreen');
+    navigation.navigate('CreateList');
   };
 
   return (
@@ -49,28 +49,39 @@ const HomeScreen = (props: HomeProp) => {
     });
   });
 
-  const [count] = useState(lists.length);
+  const count = lists.length;
   const { t } = useTranslation();
 
   return (
     <View style={screenStyles.screen}>
       <ScrollView>
         <ListHeader title={t('list.activeList')} amount={count} />
-        {count !== 0 ? <EmptyList {...props} /> : null}
-        <Text>{JSON.stringify(lists)}</Text>
-        {lists.map((list) => {
-          return <ListCard key={list._id.toString()} name={list.name} />;
-        })}
+        {count === 0 ? (
+          <EmptyList {...props} />
+        ) : (
+          <View style={listContainerStyle.container}>
+            {lists.map((list) => {
+              return <ListCard key={list._id.toString()} name={list.name} />;
+            })}
+          </View>
+        )}
       </ScrollView>
     </View>
   );
 };
 
+const listContainerStyle = StyleSheet.create({
+  container: {
+    marginTop: 16,
+    marginBottom: 8,
+  },
+});
+
 export default () => {
   return (
     <Stack.Navigator screenOptions={HomeStackOptions}>
-      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="CreateList" component={CreateListContainer} />
+      <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
   );
 };

@@ -4,7 +4,8 @@ export class List extends Realm.Object<List> {
   _id!: BSON.ObjectId;
   name!: string;
   owner_id!: string;
-  isFavorite!: boolean;
+  is_favorite!: boolean;
+  is_archive!: boolean;
 
   static schema: Realm.ObjectSchema = {
     name: 'List',
@@ -13,7 +14,11 @@ export class List extends Realm.Object<List> {
       _id: { type: 'objectId', default: () => new BSON.ObjectId() },
       name: 'string',
       owner_id: 'string',
-      isFavorite: {
+      is_favorite: {
+        type: 'bool',
+        default: false,
+      },
+      is_archive: {
         type: 'bool',
         default: false,
       },

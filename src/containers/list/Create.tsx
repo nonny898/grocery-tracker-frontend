@@ -8,12 +8,26 @@ import { useUser } from '@realm/react';
 import { realmContext } from '../../../RealmContext';
 
 import GeneralInputTextField from 'components/general/input/TextField';
+import GeneralInputTagSelector from 'components/general/input/TagSelector';
 import GeneralButtonPrimary from 'components/general/button/primary';
 import GeneralButtonSecondary from 'components/general/button/secondary';
 import { CreateListProp } from 'routes/types/Home';
 import { List } from 'models/list.model';
 
+import GROCERIES_TEMPLATE from 'templates/groceries.json';
+
 const { useRealm } = realmContext;
+
+const groceries = GROCERIES_TEMPLATE;
+
+const computeTemplate = (template: string) => {
+  switch (template) {
+    case 'groceries':
+      return groceries;
+    default:
+      return groceries;
+  }
+};
 
 export default ({ navigation }: CreateListProp) => {
   const realm = useRealm();
@@ -21,7 +35,39 @@ export default ({ navigation }: CreateListProp) => {
 
   const { t } = useTranslation();
 
+  const templateOptions: { label: string; value: string }[] = [
+    {
+      label: t('template.groceries.title'),
+      value: 'groceries',
+    },
+    {
+      label: 'Test 1',
+      value: 'custom 1',
+    },
+    {
+      label: 'Test 2',
+      value: 'custom 2',
+    },
+    {
+      label: 'Test 3',
+      value: 'custom 3',
+    },
+    {
+      label: 'Test 4',
+      value: 'custom 4',
+    },
+    {
+      label: 'Test 5',
+      value: 'custom 5',
+    },
+    {
+      label: 'Test 6',
+      value: 'custom 6',
+    },
+  ];
+
   const [name, setName] = useState('');
+  const [template, setTemplate] = useState('groceries');
 
   useEffect(() => {
     realm.subscriptions.update((mutableSubs) => {
@@ -51,9 +97,11 @@ export default ({ navigation }: CreateListProp) => {
         value={name}
         onChangeText={setName}
       />
-      <GeneralInputTextField
-        label={t('list.form.descriptionLabel')}
-        placeholder={t('list.form.descriptionPlaceholder')}
+      <GeneralInputTagSelector
+        title={t('list.form.templateTitle')}
+        options={templateOptions}
+        value={template}
+        onChange={setTemplate}
       />
 
       <View style={styles.cta}>
