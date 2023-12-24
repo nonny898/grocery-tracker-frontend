@@ -1,14 +1,14 @@
-import Realm, { BSON } from 'realm';
+import { BSON, Object, ObjectSchema } from 'realm';
 
-export class List extends Realm.Object<List> {
+export class Lists extends Object<Lists> {
   _id!: BSON.ObjectId;
   name!: string;
   owner_id!: string;
   is_favorite!: boolean;
   is_archive!: boolean;
 
-  static schema: Realm.ObjectSchema = {
-    name: 'List',
+  static schema: ObjectSchema = {
+    name: 'Lists',
     primaryKey: '_id',
     properties: {
       _id: { type: 'objectId', default: () => new BSON.ObjectId() },

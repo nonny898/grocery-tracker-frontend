@@ -12,7 +12,7 @@ import GeneralInputTagSelector from 'components/general/input/TagSelector';
 import GeneralButtonPrimary from 'components/general/button/primary';
 import GeneralButtonSecondary from 'components/general/button/secondary';
 import { CreateListProp } from 'routes/types/Home';
-import { List } from 'models/list.model';
+import { Lists } from 'models/lists.model';
 
 import GROCERIES_TEMPLATE from 'templates/groceries.json';
 
@@ -21,12 +21,7 @@ const { useRealm } = realmContext;
 const groceries = GROCERIES_TEMPLATE;
 
 const computeTemplate = (template: string) => {
-  switch (template) {
-    case 'groceries':
-      return groceries;
-    default:
-      return groceries;
-  }
+  return groceries;
 };
 
 export default ({ navigation }: CreateListProp) => {
@@ -40,30 +35,6 @@ export default ({ navigation }: CreateListProp) => {
       label: t('template.groceries.title'),
       value: 'groceries',
     },
-    {
-      label: 'Test 1',
-      value: 'custom 1',
-    },
-    {
-      label: 'Test 2',
-      value: 'custom 2',
-    },
-    {
-      label: 'Test 3',
-      value: 'custom 3',
-    },
-    {
-      label: 'Test 4',
-      value: 'custom 4',
-    },
-    {
-      label: 'Test 5',
-      value: 'custom 5',
-    },
-    {
-      label: 'Test 6',
-      value: 'custom 6',
-    },
   ];
 
   const [name, setName] = useState('');
@@ -71,7 +42,7 @@ export default ({ navigation }: CreateListProp) => {
 
   useEffect(() => {
     realm.subscriptions.update((mutableSubs) => {
-      mutableSubs.add(realm.objects(List), { name: 'lists' });
+      mutableSubs.add(realm.objects(Lists), { name: 'lists' });
     });
   });
 

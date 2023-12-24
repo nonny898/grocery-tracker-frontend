@@ -1,7 +1,7 @@
 import { createRealmContext } from '@realm/react';
 
-import { List } from './src/models/list.model';
+import { Lists } from './src/models/lists.model';
 
 export const realmContext = createRealmContext({
-  schema: [List],
+  schema: [Lists],
 });

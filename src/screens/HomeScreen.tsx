@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeProp, HomeStackParamList } from 'routes/types/Home';
 
@@ -14,10 +14,10 @@ import ListCard from 'components/list/Card';
 
 import { useTranslation } from 'react-i18next';
 import { screenStyles } from 'styles/screens';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { realmContext } from '../../RealmContext';
-import { List } from 'models/list.model';
+import { Lists } from 'models/lists.model';
 
 const { useRealm, useQuery } = realmContext;
 
@@ -41,11 +41,11 @@ const EmptyList = ({ navigation }: HomeProp) => {
 const HomeScreen = (props: HomeProp) => {
   const realm = useRealm();
 
-  const lists = useQuery<List>('List').sorted('_id');
+  const lists = useQuery<Lists>('List').sorted('_id');
 
   useEffect(() => {
     realm.subscriptions.update((mutableSubs) => {
-      mutableSubs.add(realm.objects(List), { name: 'lists' });
+      mutableSubs.add(realm.objects(Lists), { name: 'lists' });
     });
   });
 
